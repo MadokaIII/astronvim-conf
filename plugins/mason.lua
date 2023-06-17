@@ -9,12 +9,8 @@ return {
       opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
         "clangd",        -- C/C++
         "lua_ls",        -- Lua
-        "omnisharp",     -- C#
         "rust_analyzer", -- Rust
         "pyright",       -- Python
-        "jdtls",         -- Java
-        "gopls",         -- Go
-        "yamlls",        -- YAML
         "jsonls",        -- JSON
       })
     end,
@@ -25,7 +21,12 @@ return {
     -- overrides `require("mason-null-ls").setup(...)`
     opts = function(_, opts)
       -- add more things to the ensure_installed table protecting against community packs modifying it
-      opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {})
+      opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
+        "clang-format", -- C/C++
+        "stylua",       -- Lua
+        "rustfmt",      -- Rust
+        "black",        -- Python
+      })
     end,
   },
   {
