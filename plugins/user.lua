@@ -1,10 +1,10 @@
 return {
-  -- You can also add new plugins here as well:
-  -- Add plugins, the lazy syntax
+  -- you can also add new plugins here as well:
+  -- add plugins, the lazy syntax
   -- "andweeb/presence.nvim",
   {
     "lvimuser/lsp-inlayhints.nvim",
-    event = "User Astrofile",
+    event = "user astrofile",
     config = true,
     branch = "anticonceal",
   },
@@ -14,33 +14,33 @@ return {
   },
   {
     "fedepujol/move.nvim",
-    event = "User Astrofile",
+    event = "user astrofile",
   },
   {
-    "CRAG666/code_runner.nvim",
-    cmd = { "RunCode", "RunFile" },
+    "crag666/code_runner.nvim",
+    cmd = { "runcode", "runfile" },
     config = function()
       require("code_runner").setup {
         -- put here the commands by filetype
         startinsert = false,
-        filetype_path = "", -- No default path define
-        project_path = "", -- No default path defined
+        filetype_path = "", -- no default path define
+        project_path = "", -- no default path defined
         filetype = {
-          java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
-          python = "export PYTHONPATH=$PYTHONPATH:. && time python3 -X dev -u",
+          java = "cd $dir && javac $filename && java $filenamewithoutext",
+          python = "export pythonpath=$pythonpath:. && time python3 -x dev -u",
           lua = "time luaj",
           typescript = "time deno run",
-          rust = "cd $dir && rustc $fileName && time $dir/$fileNameWithoutExt",
+          rust = "cd $dir && rustc $filename && time $dir/$filenamewithoutext",
           javascript = "time node",
           shellscript = "time bash",
           zsh = "time zsh -i",
           go = "time go run",
           scala = "time scala",
-          c = "cd $dir && gcc $fileName -o $fileNameWithoutExt -Wall && time ./$fileNameWithoutExt && rm $fileNameWithoutExt",
+          c = "cd $dir && gcc $filename -o $filenamewithoutext -wall && time ./$filenamewithoutext && rm $filenamewithoutext",
           markdown = "rich",
         },
         term = {
-          --  Position to open the terminal, this option is ignored if mode is tab
+          --  position to open the terminal, this option is ignored if mode is tab
           mode = "toggleterm",
           position = "bot",
           -- position = "vert",
@@ -52,26 +52,26 @@ return {
   },
   {
     "sindrets/diffview.nvim",
-    event = "User AstroGitFile",
+    event = "user astrogitfile",
     config = function()
       local actions = require "diffview.actions"
       local utils = require "astronvim.utils"
-      local prefix = "<leader>D"
+      local prefix = "<leader>d"
 
       utils.set_mappings {
         n = {
-          [prefix] = { name = " Diff View" },
+          [prefix] = { name = " diff view" },
           [prefix .. "<cr>"] = {
-            "<cmd>DiffviewOpen<cr>",
-            desc = "Open DiffView",
+            "<cmd>diffviewopen<cr>",
+            desc = "open diffview",
           },
           [prefix .. "h"] = {
-            "<cmd>DiffviewFileHistory %<cr>",
-            desc = "Open DiffView File History",
+            "<cmd>diffviewfilehistory %<cr>",
+            desc = "open diffview file history",
           },
-          [prefix .. "H"] = {
-            "<cmd>DiffviewFileHistory<cr>",
-            desc = "Open DiffView Branch History",
+          [prefix .. "h"] = {
+            "<cmd>diffviewfilehistory<cr>",
+            desc = "open diffview branch history",
           },
         },
       }
@@ -82,20 +82,20 @@ return {
         for lhs, def in
           pairs(utils.extend_tbl(maps, {
             [prefix .. "q"] = {
-              "<cmd>DiffviewClose<cr>",
-              desc = "Quit Diffview",
-            }, -- Toggle the file panel.
-            ["]D"] = { actions.select_next_entry, desc = "Next Difference" }, -- Open the diff for the next file
-            ["[D"] = {
+              "<cmd>diffviewclose<cr>",
+              desc = "quit diffview",
+            }, -- toggle the file panel.
+            ["]d"] = { actions.select_next_entry, desc = "next difference" }, -- open the diff for the next file
+            ["[d"] = {
               actions.select_prev_entry,
-              desc = "Previous Difference",
-            }, -- Open the diff for the previous file
-            ["[C"] = { actions.prev_conflict, desc = "Next Conflict" }, -- In the merge_tool: jump to the previous conflict
-            ["]C"] = { actions.next_conflict, desc = "Previous Conflict" }, -- In the merge_tool: jump to the next conflict
-            ["Cl"] = { actions.cycle_layout, desc = "Cycle Diff Layout" }, -- Cycle through available layouts.
-            ["Ct"] = { actions.listing_style, desc = "Cycle Tree Style" }, -- Cycle through available layouts.
-            ["<leader>e"] = { actions.toggle_files, desc = "Toggle Explorer" }, -- Toggle the file panel.
-            ["<leader>o"] = { actions.focus_files, desc = "Focus Explorer" }, -- Bring focus to the file panel
+              desc = "previous difference",
+            }, -- open the diff for the previous file
+            ["[c"] = { actions.prev_conflict, desc = "next conflict" }, -- in the merge_tool: jump to the previous conflict
+            ["]c"] = { actions.next_conflict, desc = "previous conflict" }, -- in the merge_tool: jump to the next conflict
+            ["cl"] = { actions.cycle_layout, desc = "cycle diff layout" }, -- cycle through available layouts.
+            ["ct"] = { actions.listing_style, desc = "cycle tree style" }, -- cycle through available layouts.
+            ["<leader>e"] = { actions.toggle_files, desc = "toggle explorer" }, -- toggle the file panel.
+            ["<leader>o"] = { actions.focus_files, desc = "focus explorer" }, -- bring focus to the file panel
           }))
         do
           local opts
@@ -123,71 +123,71 @@ return {
           view = build_keymaps {
             [prefix .. "o"] = {
               actions.conflict_choose "ours",
-              desc = "Take Ours",
-            }, -- Choose the OURS version of a conflict
+              desc = "take ours",
+            }, -- choose the ours version of a conflict
             [prefix .. "t"] = {
               actions.conflict_choose "theirs",
-              desc = "Take Theirs",
-            }, -- Choose the THEIRS version of a conflict
+              desc = "take theirs",
+            }, -- choose the theirs version of a conflict
             [prefix .. "b"] = {
               actions.conflict_choose "base",
-              desc = "Take Base",
-            }, -- Choose the BASE version of a conflict
+              desc = "take base",
+            }, -- choose the base version of a conflict
             [prefix .. "a"] = {
               actions.conflict_choose "all",
-              desc = "Take All",
-            }, -- Choose all the versions of a conflict
+              desc = "take all",
+            }, -- choose all the versions of a conflict
             [prefix .. "0"] = {
               actions.conflict_choose "none",
-              desc = "Take None",
-            }, -- Delete the conflict region
+              desc = "take none",
+            }, -- delete the conflict region
           },
           diff3 = build_keymaps {
-            [prefix .. "O"] = {
+            [prefix .. "o"] = {
               actions.diffget "ours",
               mode = { "n", "x" },
-              desc = "Get Our Diff",
-            }, -- Obtain the diff hunk from the OURS version of the file
-            [prefix .. "T"] = {
+              desc = "get our diff",
+            }, -- obtain the diff hunk from the ours version of the file
+            [prefix .. "t"] = {
               actions.diffget "theirs",
               mode = { "n", "x" },
-              desc = "Get Their Diff",
-            }, -- Obtain the diff hunk from the THEIRS version of the file
+              desc = "get their diff",
+            }, -- obtain the diff hunk from the theirs version of the file
           },
           diff4 = build_keymaps {
-            [prefix .. "B"] = {
+            [prefix .. "b"] = {
               actions.diffget "base",
               mode = { "n", "x" },
-              desc = "Get Base Diff",
-            }, -- Obtain the diff hunk from the OURS version of the file
-            [prefix .. "O"] = {
+              desc = "get base diff",
+            }, -- obtain the diff hunk from the ours version of the file
+            [prefix .. "o"] = {
               actions.diffget "ours",
               mode = { "n", "x" },
-              desc = "Get Our Diff",
-            }, -- Obtain the diff hunk from the OURS version of the file
-            [prefix .. "T"] = {
+              desc = "get our diff",
+            }, -- obtain the diff hunk from the ours version of the file
+            [prefix .. "t"] = {
               actions.diffget "theirs",
               mode = { "n", "x" },
-              desc = "Get Their Diff",
-            }, -- Obtain the diff hunk from the THEIRS version of the file
+              desc = "get their diff",
+            }, -- obtain the diff hunk from the theirs version of the file
           },
           file_panel = build_keymaps {
-            j = actions.next_entry, -- Bring the cursor to the next file entry
-            k = actions.prev_entry, -- Bring the cursor to the previous file entry.
+            j = actions.next_entry, -- bring the cursor to the next file entry
+            k = actions.prev_entry, -- bring the cursor to the previous file entry.
             o = actions.select_entry,
-            S = actions.stage_all, -- Stage all entries.
-            U = actions.unstage_all, -- Unstage all entries.
-            X = actions.restore_entry, -- Restore entry to the state on the left side.
-            L = actions.open_commit_log, -- Open the commit log panel.
-            Cf = { actions.toggle_flatten_dirs, desc = "Flatten" }, -- Flatten empty subdirectories in tree listing style.
-            R = actions.refresh_files, -- Update stats and entries in the file list.
-            ["-"] = actions.toggle_stage_entry, -- Stage / unstage the selected entry.
+            s = actions.stage_all, -- stage all entries.
+            u = actions.unstage_all, -- unstage all entries.
+            x = actions.restore_entry, -- restore entry to the state on the left side.
+            l = actions.open_commit_log, -- open the commit log panel.
+            cf = { actions.toggle_flatten_dirs, desc = "flatten" }, -- flatten empty subdirectories in tree listing style.
+            r = actions.refresh_files, -- update stats and entries in the file list.
+            ["-"] = actions.toggle_stage_entry, -- stage / unstage the selected entry.
             ["<down>"] = actions.next_entry,
             ["<up>"] = actions.prev_entry,
-            ["<cr>"] = actions.select_entry, -- Open the diff for the selected entry.
-            ["<2-LeftMouse>"] = actions.select_entry,
-            ["<c-b>"] = actions.scroll_view(-0.25), -- Scroll the view up
-            ["<c-f>"] = actions.scroll_view(0.25), -- Scroll the view down
+            ["<cr>"] = actions.select_entry, -- open the diff for the selected entry.
+            ["<2-leftmouse>"] = actions.select_entry,
+            ["<c-b>"] = actions.scroll_view(-0.25), -- scroll the view up
+            ["<c-f>"] = actions.scroll_view(0.25), -- scroll the view down
             ["<tab>"] = actions.select_next_entry,
             ["<s-tab>"] = actions.select_prev_entry,
           },
@@ -195,16 +195,16 @@ return {
             j = actions.next_entry,
             k = actions.prev_entry,
             o = actions.select_entry,
-            y = actions.copy_hash, -- Copy the commit hash of the entry under the cursor
-            L = actions.open_commit_log,
-            zR = { actions.open_all_folds, desc = "Open all folds" },
-            zM = { actions.close_all_folds, desc = "Close all folds" },
-            ["?"] = { actions.options, desc = "Options" }, -- Open the option panel
+            y = actions.copy_hash, -- copy the commit hash of the entry under the cursor
+            l = actions.open_commit_log,
+            zr = { actions.open_all_folds, desc = "open all folds" },
+            zm = { actions.close_all_folds, desc = "close all folds" },
+            ["?"] = { actions.options, desc = "options" }, -- open the option panel
             ["<down>"] = actions.next_entry,
             ["<up>"] = actions.prev_entry,
             ["<cr>"] = actions.select_entry,
-            ["<2-LeftMouse>"] = actions.select_entry,
-            ["<C-A-d>"] = actions.open_in_diffview, -- Open the entry under the cursor in a diffview
+            ["<2-leftmouse>"] = actions.select_entry,
+            ["<c-a-d>"] = actions.open_in_diffview, -- open the entry under the cursor in a diffview
             ["<c-b>"] = actions.scroll_view(-0.25),
             ["<c-f>"] = actions.scroll_view(0.25),
             ["<tab>"] = actions.select_next_entry,
@@ -214,7 +214,7 @@ return {
             q = actions.close,
             o = actions.select_entry,
             ["<cr>"] = actions.select_entry,
-            ["<2-LeftMouse"] = actions.select_entry,
+            ["<2-leftmouse"] = actions.select_entry,
           },
         },
       }
@@ -222,25 +222,25 @@ return {
   },
   {
     "joechrisellis/lsp-format-modifications.nvim",
-    event = "User Astrofile",
+    event = "user astrofile",
   },
   {
     "m-demare/hlargs.nvim",
-    event = "User Astrofile",
+    event = "user astrofile",
     opts = {
-      color = "#FF7A00", --"#ef9062",
+      color = "#ff7a00", --"#ef9062",
       paint_arg_usages = true,
     },
   },
   {
-    "Exafunction/codeium.vim",
-    event = "User Astrofile",
+    "exafunction/codeium.vim",
+    event = "user astrofile",
     config = function()
-      -- Change '<C-g>' here to any keycode you like.
-      vim.keymap.set("i", "<C-g>", function() return vim.fn["codeium#Accept"]() end, { expr = true })
-      vim.keymap.set("i", "<C-n>", function() return vim.fn["codeium#CycleCompletions"](1) end, { expr = true })
-      vim.keymap.set("i", "<C-p>", function() return vim.fn["codeium#CycleCompletions"](-1) end, { expr = true })
-      vim.keymap.set("i", "<C-x>", function() return vim.fn["codeium#Clear"]() end, { expr = true })
+      -- change '<c-g>' here to any keycode you like.
+      vim.keymap.set("i", "<c-g>", function() return vim.fn["codeium#accept"]() end, { expr = true })
+      vim.keymap.set("i", "<c-n>", function() return vim.fn["codeium#cyclecompletions"](1) end, { expr = true })
+      vim.keymap.set("i", "<c-p>", function() return vim.fn["codeium#cyclecompletions"](-1) end, { expr = true })
+      vim.keymap.set("i", "<c-x>", function() return vim.fn["codeium#clear"]() end, { expr = true })
     end,
   },
   {
@@ -262,39 +262,39 @@ return {
           require "neotest-rust",
           require "neotest-python",
         },
-        log_level = vim.log.levels.DEBUG,
+        log_level = vim.log.levels.debug,
       }
-      vim.api.nvim_create_user_command("NeotestRun", require("neotest").run.run, {})
+      vim.api.nvim_create_user_command("neotestrun", require("neotest").run.run, {})
       vim.api.nvim_create_user_command(
-        "NeotestRunFile",
+        "neotestrunfile",
         function() require("neotest").run.run(vim.fn.expand "%") end,
         {}
       )
       vim.api.nvim_create_user_command(
-        "NeotestRunDap",
+        "neotestrundap",
         function() require("neotest").run.run { strategy = "dap" } end,
         {}
       )
-      vim.api.nvim_create_user_command("NeotestStop", function() require("neotest").run.stop() end, {})
-      vim.api.nvim_create_user_command("NeotestAttach", function() require("neotest").run.attach() end, {})
-      vim.api.nvim_create_user_command("NeotestSummaryToggle", function() require("neotest").summary.toggle() end, {})
+      vim.api.nvim_create_user_command("neoteststop", function() require("neotest").run.stop() end, {})
+      vim.api.nvim_create_user_command("neotestattach", function() require("neotest").run.attach() end, {})
+      vim.api.nvim_create_user_command("neotestsummarytoggle", function() require("neotest").summary.toggle() end, {})
       vim.api.nvim_create_user_command(
-        "NeotestOutput",
+        "neotestoutput",
         function() require("neotest").output.open { enter = true } end,
         {}
       )
       vim.api.nvim_create_user_command(
-        "NeotestOutputToggle",
+        "neotestoutputtoggle",
         function() require("neotest").output_panel.toggle() end,
         {}
       )
       vim.api.nvim_create_user_command(
-        "NeotestJumpPreviousFailed",
+        "neotestjumppreviousfailed",
         function() require("neotest").jump.prev { status = "failed" } end,
         {}
       )
       vim.api.nvim_create_user_command(
-        "NeotestJumpNextFailed",
+        "neotestjumpnextfailed",
         function() require("neotest").jump.next { status = "failed" } end,
         {}
       )
@@ -305,12 +305,12 @@ return {
       "nvim-neotest/neotest-go",
       "nvim-neotest/neotest-python",
       "rouge8/neotest-rust",
-      "antoinemadec/FixCursorHold.nvim",
+      "antoinemadec/fixcursorhold.nvim",
     },
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    event = "User Astrofile",
+    event = "user astrofile",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
     },
