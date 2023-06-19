@@ -26,6 +26,24 @@ return {
     underline = true,
   },
 
+  lsp = {
+    skip_setup = { "rust_analyzer" }, -- rust-tools will handle setting up the LSP
+  },
+  plugins = {
+    init = {
+      {
+        "simrat39/rust-tools.nvim",
+        after = { "mason-lspconfig.nvim" },
+        -- Is configured via the server_registration_override installed below!
+        config = function()
+          require("rust-tools").setup {
+            server = astronvim.lsp.server_settings "rust_analyzer", -- get the server-settings from the AstroNvim tables to allow use with lsp.server-settings and lsp.on_attach user configuration
+          }
+        end,
+      },
+    },
+  },
+
   -- This function is run last and is a good place to configuring
   -- augroups/autocommands and custom filetypes also this just pure lua so
   -- anything that doesn't fit in the normal config locations above can go here
